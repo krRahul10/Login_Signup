@@ -5,6 +5,7 @@ import Sign_img from "./Sign_img";
 import { useState } from "react";
 
 const Home = () => {
+    const [data, setData] = useState([])
   const [inputVal, setInputVal] = useState({
     name: "",
     email: "",
@@ -23,6 +24,8 @@ const Home = () => {
       };
     });
   };
+
+  
 
   const addData = (e) => {
     e.preventDefault();
@@ -45,6 +48,7 @@ const Home = () => {
     } else {
         console.log("data added successfully")
         alert("done")
+        localStorage.setItem("useryoutube", JSON.stringify([...data,inputVal]))
     }
   };
   return (
