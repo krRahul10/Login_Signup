@@ -51,7 +51,7 @@ const Login = () => {
         } else {
 
           alert("user login successfully");
-          localStorage.setItem("user_login", (getuserArr))
+          localStorage.setItem("user_login", JSON.stringify(userlogin))
           history('/details')
         }
       }
