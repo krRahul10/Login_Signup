@@ -3,8 +3,9 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Sign_img from "./Sign_img";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 const Login = () => {
+    const history = useNavigate()
   const [data, setData] = useState([]);
   const [inputVal, setInputVal] = useState({
     email: "",
@@ -48,7 +49,10 @@ const Login = () => {
         if (userlogin.length === 0) {
           alert("invalid details");
         } else {
-          console.log("user login successfully");
+
+          alert("user login successfully");
+          localStorage.setItem("user_login", (getuserArr))
+          history('/details')
         }
       }
     }
