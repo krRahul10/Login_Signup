@@ -3,14 +3,63 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Sign_img from "./Sign_img";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 const Login = () => {
+  const [data, setData] = useState([]);
+  const [inputVal, setInputVal] = useState({
+    email: "",
+    password: "",
+  });
+
+  //   console.log(inputVal);
+
+  const getData = (e) => {
+    const { value, name } = e.target;
+    setInputVal(() => {
+      return {
+        ...inputVal,
+        [name]: value,
+      };
+    });
+  };
+
+  const addData = (e) => {
+    e.preventDefault();
+
+    const getuserArr = localStorage.getItem("useryoutube");
+    console.log("getuserArr", getuserArr);
+    const { email, password } = inputVal;
+
+    if (email === "") {
+      alert("email field is required");
+    } else if (!email.includes("@")) {
+      alert("please enter valid email");
+    } else if (password === "") {
+      alert("password field is required");
+    } else if (password.length < 5) {
+      alert("password must be greater than 5");
+    } else {
+      if (getuserArr && getuserArr.length) {
+        const userdata = JSON.parse(getuserArr);
+        const userlogin = userdata.filter((el, k) => {
+          return el.email === email && el.password === password;
+        });
+
+        if (userlogin.length === 0) {
+          alert("invalid details");
+        } else {
+          console.log("user login successfully");
+        }
+      }
+    }
+  };
   return (
     <div>
       <div className="container">
         <section className="d-flex justify-content-between">
           <div className="left_data" style={{ width: "100%" }}>
             <h3 className="text-center col-lg-6">Sign In</h3>
-            {/* <Form>
+            <Form>
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
                 <Form.Control
                   type="email"
@@ -44,14 +93,17 @@ const Login = () => {
               >
                 Submit
               </Button>
-            </Form> */}
+            </Form>
             <p
               className="mt-3"
               style={{
                 marginLeft: "-50%",
               }}
             >
-              Already Have an Account <span>SignIn</span>
+              Doesn't Have an Account ?...
+              <span>
+                <NavLink to="/">Register Now</NavLink>{" "}
+              </span>
             </p>
           </div>
           <Sign_img />

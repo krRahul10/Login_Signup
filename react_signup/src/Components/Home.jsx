@@ -3,9 +3,10 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Sign_img from "./Sign_img";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
-    const [data, setData] = useState([])
+  const [data, setData] = useState([]);
   const [inputVal, setInputVal] = useState({
     name: "",
     email: "",
@@ -25,11 +26,8 @@ const Home = () => {
     });
   };
 
-  
-
   const addData = (e) => {
     e.preventDefault();
-    
 
     const { name, email, date, password } = inputVal;
 
@@ -46,9 +44,9 @@ const Home = () => {
     } else if (password.length < 5) {
       alert("password must be greater than 5");
     } else {
-        console.log("data added successfully")
-        alert("done")
-        localStorage.setItem("useryoutube", JSON.stringify([...data,inputVal]))
+      console.log("data added successfully");
+      alert("done");
+      localStorage.setItem("useryoutube", JSON.stringify([...data, inputVal]));
     }
   };
   return (
@@ -115,7 +113,7 @@ const Home = () => {
                 marginLeft: "-50%",
               }}
             >
-              Already Have an Account <span>SignIn</span>
+              Already Have an Account ?...<span><NavLink to='/login'>Sign In</NavLink> </span>
             </p>
           </div>
           <Sign_img />
