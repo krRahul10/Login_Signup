@@ -92,6 +92,7 @@ const Login = () => {
                 style={{
                   marginLeft: "-50%",
                   backgroundColor: "rgb(67,185,127)",
+                  border:"1px solid white"
                 }}
                 onClick={addData}
               >
